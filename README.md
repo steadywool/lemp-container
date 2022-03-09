@@ -1,4 +1,4 @@
-<center><h1>Serveur Docker Lemp</h1></center>
+# Serveur Docker Lemp
 
 Installer `docker` et `docker-compose`
 
@@ -12,7 +12,6 @@ Sur ArchLinux:
 sudo pacman -S docker docker-compose
 ```
 
-<br>
 <hr>
 
 dans le repertoire du serveur lemp, entrer la commande `sudo docker-compose up -d`, et voila, le serveur LEMP fonctionne.
@@ -31,9 +30,8 @@ dans le repertoire du serveur lemp, entrer la commande `sudo docker-compose up -
 ```
 sudo docker exec -ti lemp-mariadb-1 mysql -u root -p
 ```
-<small>Ici, `lemp-mariadb-1` est le nom du container mariadb (mysql)</small>
+<sub><sup>Ici, `lemp-mariadb-1` est le nom du container mariadb (mysql)</sup></sub>
 
-<br>
 <hr>
 
 ```
@@ -47,9 +45,8 @@ sudo docker exec -ti lemp-mariadb-1 mysql -u root -p
 └── src
     └── index.php
 ```
-<small>Repertoire du serveur LEMP</small>
+<sub><sup>Repertoire du serveur LEMP</sup></sub>
 
-<br>
 <hr>
 
 - Pour afficher les infos des images/containers docker, `sudo docker images` & `sudo docker container ps`

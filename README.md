@@ -30,7 +30,7 @@ dans le repertoire du serveur lemp, entrer la commande `sudo docker-compose up -
 ```
 sudo docker exec -ti lemp-mariadb-1 mysql -u root -p
 ```
-<sub><sup>Ici, `lemp-mariadb-1` est le nom du container mariadb (mysql)</sup></sub>
+<sub>Ici, `lemp-mariadb-1` est le nom du container mariadb (mysql)</sup>
 
 <hr>
 
@@ -45,7 +45,7 @@ sudo docker exec -ti lemp-mariadb-1 mysql -u root -p
 └── src
     └── index.php
 ```
-<sub><sup>Repertoire du serveur LEMP</sup></sub>
+<sub>Repertoire du serveur LEMP</sub>
 
 <hr>
 

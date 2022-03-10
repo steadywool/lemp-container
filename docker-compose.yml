@@ -1,4 +1,4 @@
-version: '3.9'
+version: '3.3'
 
 # Services
 services:
@@ -24,8 +24,7 @@ services:
 
   # PHP FPM
   php:
-    build:
-      dockerfile: php.dockerfile
+    image: php:8.1-fpm-alpine3.15
     working_dir: /var/www/php
     volumes:
       - ./src:/var/www/php

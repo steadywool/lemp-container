@@ -14,6 +14,8 @@ sudo pacman -S docker docker-compose
 
 <hr>
 
+Créez le dossier `src` à la racine du serveur lemp (voir schema ci-dessous).
+
 dans le repertoire du serveur lemp, entrer la commande `sudo docker-compose up -d`, et voila, le serveur LEMP fonctionne.
 
 - Pour eteindre le serveur, faire `sudo docker-compose stop`

@@ -24,12 +24,27 @@ services:
 
   # PHP FPM
   php:
-    image: php:8.1-fpm-alpine3.15
+    build:
+      context: .
+      dockerfile: php-dockerfile
+    ports:
+      - 9000:9000
     working_dir: /var/www/php
     volumes:
       - ./src:/var/www/php
     depends_on:
       - mariadb
+
+  # Mariadb
+  mariadb:
+    image: mariadb:10.7
+    ports:
+      - 3306:3306
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+    volumes:
+      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - mariadbdata:/var/lib/mysql
 
   # Phpmyadmin FPM
   phpmyadmin:
@@ -42,14 +57,6 @@ services:
       PMA_PASSWORD: root
     depends_on:
       - mariadb
-
-  # Mariadb
-  mariadb:
-    image: mariadb:10.7
-    environment:
-      MARIADB_ROOT_PASSWORD: root
-    volumes:
-      - mariadbdata:/var/lib/mysql
 
 # Volumes
 volumes:

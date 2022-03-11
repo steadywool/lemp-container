@@ -26,8 +26,6 @@ dans le repertoire du serveur lemp, entrer la commande `sudo docker-compose up -
 
 - PHP-MY-ADMIN se situe au localhost au port `:8080` (`localhost:8080`)
 
-- La config Nginx se situe dans le dossier `/nginx/conf.d/`
-
 - Pour accéder à la ligne de commande de mariadb (mysql), faire:
 ```
 sudo docker exec -ti lemp-mariadb-1 mysql -u root -p

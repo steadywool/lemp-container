@@ -11,11 +11,11 @@ services:
       - 8080:8080
     volumes:
       - ./src:/var/www/php
-      - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
+      - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
 
-      - ./logs/nginx-error.log:/var/log/nginx/error.log
-      - ./logs/nginx-access.log:/var/log/nginx/access.log
+      - ./config/log/nginx-error.log:/var/log/nginx/nginx-error.log
+      - ./config/log/nginx-access.log:/var/log/nginx/nginx-access.log
 
       - phpmyadmindata:/var/www/phpmyadmin
     depends_on:
@@ -32,6 +32,9 @@ services:
     working_dir: /var/www/php
     volumes:
       - ./src:/var/www/php
+      - ./config/php/php.ini:/usr/local/etc/php/php.ini
+
+      - ./config/log/php-error.log:/var/log/php/php-error.log
     depends_on:
       - mariadb
 
@@ -43,7 +46,7 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: root
     volumes:
-      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./config/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
       - mariadbdata:/var/lib/mysql
 
   # Phpmyadmin FPM

@@ -1,4 +1,4 @@
-# Serveur Docker Lemp
+# Installation
 
 Installer `docker` et `docker-compose`
 
@@ -12,7 +12,11 @@ Sur ArchLinux:
 sudo pacman -S docker docker-compose
 ```
 
-<hr>
+Vous pouvez également installer `git` et faire `git clone https://github.com/Kaniville/docker-lemp` pour le télecharger.
+
+Si vous avez décider de télecharger le fichier zip, un simple `unzip NOM_DU_ZIP.zip` dans le répertoire ou il a été télecharger suffit à le décompresser.
+
+# Configuration
 
 Créez le dossier `src` à la racine du serveur lemp (voir schema ci-dessous).
 
@@ -48,3 +52,11 @@ sudo docker exec -ti docker-lemp-mariadb-1 mysql -u root -p
     └── index.php
 ```
 <sub>Repertoire du serveur LEMP</sub>
+
+- Pour afficher les infos des images/containers docker, `sudo docker images` & `sudo docker container ps`
+
+- Pour supprimer toutes les images docker inutilisées, `sudo docker image prune`
+
+- Pour supprimer tout les containers inutilisés, `sudo docker container prune`
+
+- Pour supprimer une seule image ou un seul container, remplacez `prune` par `rm CONTAINER_ID`

@@ -14,9 +14,6 @@ services:
       - ./config/nginx/conf.d:/etc/nginx/conf.d
       - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
 
-      - ./config/log/nginx-error.log:/var/log/nginx/nginx-error.log
-      - ./config/log/nginx-access.log:/var/log/nginx/nginx-access.log
-
       - phpmyadmindata:/var/www/phpmyadmin
     depends_on:
       - php

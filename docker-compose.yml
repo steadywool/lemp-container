@@ -33,8 +33,6 @@ services:
     volumes:
       - ./src:/var/www/php
       - ./config/php/php.ini:/usr/local/etc/php/php.ini
-
-      - ./config/log/php-error.log:/var/log/php/php-error.log
     depends_on:
       - mariadb
 

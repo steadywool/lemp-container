@@ -24,18 +24,20 @@ dans le repertoire du serveur lemp, entrer la commande `sudo docker-compose up -
 
 - Les fichiers du serveur se situent dans le dossier `/src/`
 
+- La configuration php utilise ici `php.ini-production`. Pour utiliser la configuration `php.ini-development`, remplacer le contenu du fichier `php.ini`
+
 - PHP-MY-ADMIN se situe au localhost au port `:8080` (`localhost:8080`)
 
 - Pour accéder à la ligne de commande de mariadb (mysql), faire:
 ```
-sudo docker exec -ti lemp-mariadb-1 mysql -u root -p
+sudo docker exec -ti docker-lemp-mariadb-1 mysql -u root -p
 ```
-<sub>Ici, `lemp-mariadb-1` est le nom du container mariadb (mysql)</sup>
+<sub>Ici, `docker-lemp-mariadb-1` est le nom du container mariadb (mysql)</sup>
 
 <hr>
 
 ```
-.                                                                       <--Lancer le serveur depuis ici
+.                                <--Lancer le serveur depuis ici
 ├── docker-compose.yml
 ├── nginx
 │   └── conf.d
@@ -46,15 +48,3 @@ sudo docker exec -ti lemp-mariadb-1 mysql -u root -p
     └── index.php
 ```
 <sub>Repertoire du serveur LEMP</sub>
-
-<hr>
-
-- Pour afficher les infos des images/containers docker, `sudo docker images` & `sudo docker container ps`
-
-- Pour supprimer toutes les images docker, `sudo docker image prune`
-
-- Pour supprimer tout les containers, `sudo docker container prune`
-
-- Pour supprimer une seule image ou un seul container, remplacez `prune` par `rm CONTAINER_ID`
-
-

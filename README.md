@@ -41,15 +41,25 @@ sudo docker exec -ti docker-lemp-mariadb-1 mysql -u root -p
 <hr>
 
 ```
-.                                <--Lancer le serveur depuis ici
+.                              <-- Dossier "docker-lemp"
+├── config
+│   ├── mysql
+│   │   └── my.cnf
+│   ├── nginx
+│   │   ├── conf.d
+│   │   │   ├── phpmyadmin.conf
+│   │   │   └── server.conf
+│   │   └── nginx.conf
+│   └── php
+│       ├── php.ini
+│       ├── php.ini-development
+│       └── php.ini-production
 ├── docker-compose.yml
-├── nginx
-│   └── conf.d
-│       └── server.conf
-├── php.dockerfile
+├── php-dockerfile
 ├── README.md
 └── src
-    └── index.php
+
+6 directories, 10 files
 ```
 <sub>Repertoire du serveur LEMP</sub>
 

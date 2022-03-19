@@ -24,8 +24,6 @@ services:
     build:
       context: .
       dockerfile: php-dockerfile
-    ports:
-      - 9000:9000
     working_dir: /var/www/php
     volumes:
       - ./src:/var/www/php
@@ -36,8 +34,6 @@ services:
   # Mariadb
   mariadb:
     image: mariadb:10.7
-    ports:
-      - 3306:3306
     environment:
       MARIADB_ROOT_PASSWORD: root
     volumes:

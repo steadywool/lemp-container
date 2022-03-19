@@ -20,7 +20,9 @@ Si vous avez décider de télecharger le fichier zip, un simple `unzip NOM_DU_ZI
 
 Créez le dossier `src` à la racine du serveur lemp (voir schema ci-dessous).
 
-dans le repertoire du serveur lemp, entrer la commande `sudo docker-compose up -d`, et voila, le serveur LEMP fonctionne.
+dans le repertoire du serveur lemp, entrer la commande `sudo docker-compose up -d`, pour construire les container et les démarrés.
+
+- Pour démarrer le serveur sans reconstruire les containers, `sudo docker-compose start`
 
 - Pour eteindre le serveur, faire `sudo docker-compose stop`
 

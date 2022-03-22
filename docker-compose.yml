@@ -42,7 +42,7 @@ services:
 
   # Phpmyadmin FPM
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin:5.1-fpm-alpine
+    image: phpmyadmin:5.1-fpm-alpine
     volumes:
       - phpmyadmindata:/var/www/html
     environment:

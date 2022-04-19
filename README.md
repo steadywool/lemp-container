@@ -38,12 +38,16 @@ dans le repertoire du serveur lemp, entrer la commande `sudo docker-compose up -
 ```
 sudo docker exec -ti docker-lemp-mariadb-1 mysql -u root -p
 ```
+
+- Pour rendre accessible le serveur LEMP à tous les appareils sous le même réseau, dans le fichier `docker-compose.yml`, 
+remplacer `127.0.0.1:PORT:PORT` par uniquement `PORT:PORT`.
+
 <sub>Ici, `docker-lemp-mariadb-1` est le nom du container mariadb (mysql)</sup>
 
 <hr>
 
 ```
-.                              <-- Dossier "docker-lemp"
+.                       <-- Dossier "docker-lemp"
 ├── config
 │   ├── mysql
 │   │   └── my.cnf

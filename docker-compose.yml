@@ -18,6 +18,7 @@ services:
     depends_on:
       - php
       - phpmyadmin
+    restart: always
 
   # PHP FPM
   php:
@@ -30,6 +31,7 @@ services:
       - ./config/php/php.ini:/usr/local/etc/php/php.ini
     depends_on:
       - mariadb
+    restart: always
 
   # Mariadb
   mariadb:
@@ -39,6 +41,7 @@ services:
     volumes:
       - ./config/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
       - mariadbdata:/var/lib/mysql
+    restart: always
 
   # Phpmyadmin FPM
   phpmyadmin:
@@ -51,6 +54,7 @@ services:
       PMA_PASSWORD: root
     depends_on:
       - mariadb
+    restart: always
 
 # Volumes
 volumes:

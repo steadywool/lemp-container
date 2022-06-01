@@ -1,8 +1,7 @@
-version: '3.3'
+version: "3.3"
 
 # Services
 services:
-
   # Nginx
   nginx:
     image: nginx:1.21-alpine
@@ -60,4 +59,3 @@ services:
 volumes:
   mariadbdata:
   phpmyadmindata:
-

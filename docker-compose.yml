@@ -2,6 +2,45 @@ version: "3.3"
 
 # Services
 services:
+
+  # Mariadb
+  mariadb:
+    image: mariadb:10.8
+    ports:
+      - 127.0.0.1:3306:3306
+    volumes:
+      - ./config/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - mariadbdata:/var/lib/mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+    #restart: always
+
+  # PHP FPM
+  php:
+    build:
+      context: .
+      dockerfile: php-dockerfile
+    working_dir: /var/www/php
+    volumes:
+      - ./src:/var/www/php
+      - ./config/php/php.ini:/usr/local/etc/php/php.ini
+    depends_on:
+      - mariadb
+    #restart: always
+
+  # Phpmyadmin FPM
+  phpmyadmin:
+    image: phpmyadmin:5.1-fpm-alpine
+    volumes:
+      - phpmyadmindata:/var/www/html
+    environment:
+      PMA_HOST: mariadb
+      PMA_USER: root
+      PMA_PASSWORD: root
+    depends_on:
+      - mariadb
+    #restart: always
+
   # Nginx
   nginx:
     image: nginx:1.21-alpine
@@ -16,44 +55,7 @@ services:
       - phpmyadmindata:/var/www/phpmyadmin
     depends_on:
       - php
-      - phpmyadmin
-    restart: always
-
-  # PHP FPM
-  php:
-    build:
-      context: .
-      dockerfile: php-dockerfile
-    working_dir: /var/www/php
-    volumes:
-      - ./src:/var/www/php
-      - ./config/php/php.ini:/usr/local/etc/php/php.ini
-    depends_on:
-      - mariadb
-    restart: always
-
-  # Mariadb
-  mariadb:
-    image: mariadb:10.7
-    environment:
-      MARIADB_ROOT_PASSWORD: root
-    volumes:
-      - ./config/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
-      - mariadbdata:/var/lib/mysql
-    restart: always
-
-  # Phpmyadmin FPM
-  phpmyadmin:
-    image: phpmyadmin:5.1-fpm-alpine
-    volumes:
-      - phpmyadmindata:/var/www/html
-    environment:
-      PMA_HOST: mariadb
-      PMA_USER: root
-      PMA_PASSWORD: root
-    depends_on:
-      - mariadb
-    restart: always
+    #restart: always
 
 # Volumes
 volumes:

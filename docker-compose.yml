@@ -1,63 +1,53 @@
-version: "3.3"
+version: "3.4"
 
-# Services
 services:
-
-  # Mariadb
-  mariadb:
-    image: mariadb:10.8
-    ports:
-      - 127.0.0.1:3306:3306
-    volumes:
-      - ./config/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
-      - mariadbdata:/var/lib/mysql
-    environment:
-      MARIADB_ROOT_PASSWORD: root
-    #restart: always
-
-  # PHP FPM
-  php:
-    build:
-      context: .
-      dockerfile: php-dockerfile
-    working_dir: /var/www/php
-    volumes:
-      - ./src:/var/www/php
-      - ./config/php/php.ini:/usr/local/etc/php/php.ini
-    depends_on:
-      - mariadb
-    #restart: always
-
-  # Phpmyadmin FPM
-  phpmyadmin:
-    image: phpmyadmin:5.1-fpm-alpine
-    volumes:
-      - phpmyadmindata:/var/www/html
-    environment:
-      PMA_HOST: mariadb
-      PMA_USER: root
-      PMA_PASSWORD: root
-    depends_on:
-      - mariadb
-    #restart: always
-
-  # Nginx
   nginx:
-    image: nginx:1.21-alpine
+    image: nginx:alpine
     ports:
-      - 127.0.0.1:80:80
-      - 127.0.0.1:8080:8080
+      - 127.0.0.1:80:80 # Serveur Nginx+Php
+      - 127.0.0.1:8080:8080 # Phpmyadmin
     volumes:
-      - ./src:/var/www/php
+      - ./src:/var/www/html
       - ./config/nginx/conf.d:/etc/nginx/conf.d
       - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
 
       - phpmyadmindata:/var/www/phpmyadmin
     depends_on:
       - php
-    #restart: always
+      - phpmyadmin
 
-# Volumes
+  php:
+    build:
+      context: .
+      dockerfile: php-dockerfile # PHP FPM Alpine
+    working_dir: /var/www/html
+    volumes:
+      - ./src:/var/www/html
+      - ./config/php/php.ini:/usr/local/etc/php/php.ini
+    depends_on:
+      - mariadb
+
+  mariadb:
+    image: mariadb
+    volumes:
+      - mariadbdata:/var/lib/mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+
+  phpmyadmin:
+    image: phpmyadmin:fpm-alpine
+    volumes:
+      - phpmyadmindata:/var/www/html # Emplacement de phpmyadmin
+    environment:
+      PMA_HOST: mariadb
+      PMA_USER: root
+      PMA_PASSWORD: root
+    depends_on:
+      - mariadb
+
 volumes:
+  # mariadbdata se situe dans le container mariadb /var/lyb/mysql
   mariadbdata:
+
+  # phpmyadmindata se situe dans le container phpmyadmin /var/www/html mais également dans le container nginx /var/www/phpmyadmin
   phpmyadmindata:

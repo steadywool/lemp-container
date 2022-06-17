@@ -49,8 +49,6 @@ remplacer `127.0.0.1:PORT:PORT` par uniquement `PORT:PORT`.
 ```
 .                       <-- Dossier "docker-lemp"
 ├── config
-│   ├── mysql
-│   │   └── my.cnf
 │   ├── nginx
 │   │   ├── conf.d
 │   │   │   ├── phpmyadmin.conf

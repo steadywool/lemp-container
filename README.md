@@ -51,7 +51,6 @@ remplacer `127.0.0.1:PORT:PORT` par uniquement `PORT:PORT`.
 ├── config
 │   ├── nginx
 │   │   ├── conf.d
-│   │   │   ├── phpmyadmin.conf
 │   │   │   └── server.conf
 │   │   └── nginx.conf
 │   └── php
@@ -62,9 +61,8 @@ remplacer `127.0.0.1:PORT:PORT` par uniquement `PORT:PORT`.
 ├── php-dockerfile
 ├── README.md
 └── src
-
-6 directories, 10 files
 ```
+
 <sub>Repertoire du serveur LEMP</sub>
 
 - Pour afficher les infos des images/containers docker, `sudo docker images` & `sudo docker container ps`

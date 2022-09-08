@@ -1,17 +1,14 @@
-version: "3.4"
+version: "3.9"
 
 services:
   nginx:
-    image: nginx:alpine
+    image: nginx
     ports:
       - 127.0.0.1:80:80 # Serveur Nginx+Php
-      - 127.0.0.1:8080:8080 # Phpmyadmin
     volumes:
       - ./src:/var/www/html
       - ./config/nginx/conf.d:/etc/nginx/conf.d
       - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
-
-      - phpmyadmindata:/var/www/phpmyadmin
     depends_on:
       - php
       - phpmyadmin
@@ -19,7 +16,7 @@ services:
   php:
     build:
       context: .
-      dockerfile: php-dockerfile # PHP FPM Alpine
+      dockerfile: php-dockerfile # PHP FPM
     working_dir: /var/www/html
     volumes:
       - ./src:/var/www/html
@@ -35,9 +32,9 @@ services:
       MARIADB_ROOT_PASSWORD: root
 
   phpmyadmin:
-    image: phpmyadmin:fpm-alpine
-    volumes:
-      - phpmyadmindata:/var/www/html # Emplacement de phpmyadmin
+    image: phpmyadmin
+    ports:
+      - 127.0.0.1:8080:80
     environment:
       PMA_HOST: mariadb
       PMA_USER: root
@@ -48,6 +45,3 @@ services:
 volumes:
   # mariadbdata se situe dans le container mariadb /var/lyb/mysql
   mariadbdata:
-
-  # phpmyadmindata se situe dans le container phpmyadmin /var/www/html mais également dans le container nginx /var/www/phpmyadmin
-  phpmyadmindata:

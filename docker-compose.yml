@@ -14,6 +14,7 @@ services:
     depends_on:
       - php
       - phpmyadmin
+    runtime: "runc"
 
   php:
     build:
@@ -25,6 +26,7 @@ services:
       - ./config/php/php.ini:/usr/local/etc/php/php.ini
     depends_on:
       - mariadb
+    runtime: "runc"
 
   mariadb:
     image: mariadb
@@ -32,6 +34,7 @@ services:
       - mariadbdata:/var/lib/mysql
     environment:
       MARIADB_ROOT_PASSWORD: root
+    runtime: "runc"
 
   phpmyadmin:
     image: phpmyadmin:fpm-alpine
@@ -43,6 +46,7 @@ services:
       PMA_PASSWORD: root
     depends_on:
       - mariadb
+    runtime: "runc"
 
 volumes:
   # mariadbdata se situe dans le container mariadb /var/lyb/mysql

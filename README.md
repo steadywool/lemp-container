@@ -57,7 +57,7 @@ In your `*.php` files, when you configure the database host, use `mariadb` inste
 $conn = mysqli_connect('mariadb', 'USER', 'PASSWORD', 'DATABASE');
 ```
 
-- How can I use port `80` for the Nginx server instead of `8080` ?
+- **How can I use port `80` for the Nginx server instead of `8080` ?**
 
 Stop the containers & modify the docker-compose.yml file like this:
 ```yml

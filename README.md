@@ -44,8 +44,17 @@ podman-compose ps
 
 ⚠️ **BE CAREFUL: by default Docker need root access. Use Podman or Docker in rootless mode if you care about security.**
 
-After the container has been started, you can access your LEMP Stack from `localhost:8080` with your favorite web browser.
+After the container has been started, you can access your LEMP server from `localhost:8080` with your favorite web browser.
 
-The PhpMyAdmin is available at `localhost:8081`.
+PhpMyAdmin is available at `localhost:8081`.
 
 To modify these ports, you can edit the `docker-compose.yaml` file.
+
+## FAQ
+
+- **Why can't I communicate with my database ?**
+
+In your `*.php` files, when you configure the database host, use `mariadb` instead of `localhost`:
+```php
+$conn = mysqli_connect('mariadb', 'USER', 'PASSWORD', 'DATABASE');
+```

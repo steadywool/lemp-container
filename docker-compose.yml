@@ -2,9 +2,9 @@ version: "3.9"
 
 services:
   nginx:
-    image: nginx:alpine
+    image: docker.io/nginx:alpine
     ports:
-      - 127.0.0.1:80:80 # Serveur Nginx+Php
+      - 127.0.0.1:8080:8080 # Serveur Nginx+Php
       - 127.0.0.1:8081:8081 # Phpmyadmin
     volumes:
       - ./src:/var/www/html
@@ -14,7 +14,6 @@ services:
     depends_on:
       - php
       - phpmyadmin
-    runtime: "runc"
 
   php:
     build:
@@ -26,18 +25,16 @@ services:
       - ./config/php/php.ini:/usr/local/etc/php/php.ini
     depends_on:
       - mariadb
-    runtime: "runc"
 
   mariadb:
-    image: mariadb
+    image: docker.io/mariadb
     volumes:
       - mariadbdata:/var/lib/mysql
     environment:
       MARIADB_ROOT_PASSWORD: root
-    runtime: "runc"
 
   phpmyadmin:
-    image: phpmyadmin:fpm-alpine
+    image: docker.io/phpmyadmin:fpm-alpine
     volumes:
       - phpmyadmindata:/var/www/html # Emplacement de phpmyadmin
     environment:
@@ -46,7 +43,6 @@ services:
       PMA_PASSWORD: root
     depends_on:
       - mariadb
-    runtime: "runc"
 
 volumes:
   # mariadbdata se situe dans le container mariadb /var/lyb/mysql

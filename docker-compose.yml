@@ -4,8 +4,9 @@ services:
   nginx:
     image: docker.io/nginx:alpine
     ports:
-      - 127.0.0.1:8080:8080 # Serveur Nginx+Php
-      - 127.0.0.1:8081:8081 # Phpmyadmin
+      # If you want to change the used port, modify the first one
+      - 127.0.0.1:8080:80 # Nginx+Php server
+      - 127.0.0.1:8081:8080 # Phpmyadmin
     volumes:
       - ./src:/var/www/html
       - ./config/nginx/conf.d:/etc/nginx/conf.d
@@ -36,7 +37,7 @@ services:
   phpmyadmin:
     image: docker.io/phpmyadmin:fpm-alpine
     volumes:
-      - phpmyadmindata:/var/www/html # Emplacement de phpmyadmin
+      - phpmyadmindata:/var/www/html
     environment:
       PMA_HOST: mariadb
       PMA_USER: root
@@ -45,8 +46,5 @@ services:
       - mariadb
 
 volumes:
-  # mariadbdata se situe dans le container mariadb /var/lyb/mysql
   mariadbdata:
-
-  # phpmyadmindata se situe dans le container phpmyadmin /var/www/html mais également dans le container nginx /var/www/phpmyadmin
   phpmyadmindata:

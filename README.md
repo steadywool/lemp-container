@@ -14,32 +14,41 @@ LEMP Container that can be used with Docker & Podman 🐋
 
 ## Installation
 
-To install this LEMP Stack, you need `podman` & `podman-compose` or `docker` & `docker-compose` are installed.
+To install this LEMP Stack, you need to install `docker` & `docker-compose` as root:
+```bash
+# On Debian or Ubuntu
+apt install docker docker-compose
+
+# On Archlinux
+pacman -S docker docker-compose
+```
 
 Then clone this repository using `git`:
 ```
 git clone https://github.com/kaniville/lemp-container.git
 ```
 
+You need to start the Docker service as root:
+```
+systemctl enable docker.service
+systemctl start docker.service
+```
+
 ## Usage
 
 To start the container, go inside the `lemp-container` directory and run:
-```
-podman-compose up -d
-```
-or with Docker:
 ```
 docker compose up -d
 ```
 
 To stop the container, replace `up -d` with `down` like this:
 ```
-podman-compose down
+docker compose down
 ```
 
 You can see if the LEMP stack is running with the option `ps`:
 ```
-podman-compose ps
+docker compose ps
 ```
 
 ⚠️ **BE CAREFUL: by default Docker need root access. Use Podman or Docker in rootless mode if you care about security.**

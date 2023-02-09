@@ -74,6 +74,7 @@ Stop the containers & modify the docker-compose.yml file like this:
     image: docker.io/nginx:alpine
     ports:
       # If you want to change the used port, modify the first one
+      # If you want to connect from other devices on the same network, remove the two "127.0.0.1:"
       - 127.0.0.1:80:80 # Nginx+Php server
       - 127.0.0.1:8080:8080 # Phpmyadmin
     volumes:
@@ -89,3 +90,24 @@ Stop the containers & modify the docker-compose.yml file like this:
 Here Nginx uses port `80` instead of `8080` and PhpMyAdmin uses port `8080` instead of `8081`.
 
 ⚠️ **BEWARE: By default, Docker & Podman rootless can't expose privileged TCP/UDP ports (<1024).**
+
+- **I can't access this server from other devices on the same network !**
+
+You need to remove the two "127.0.0.1" from the `docker-compose.yml` file like this:
+```yml
+ nginx:
+    image: docker.io/nginx:alpine
+    ports:
+      # If you want to change the used port, modify the first one
+      # If you want to connect from other devices on the same network, remove the two "127.0.0.1:"
+      - 8080:80 # Nginx+Php server
+      - 8081:8080 # Phpmyadmin
+    volumes:
+      - ./src:/var/www/html
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
+      - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - phpmyadmindata:/var/www/phpmyadmin
+    depends_on:
+      - php
+      - phpmyadmin
+```

@@ -5,6 +5,7 @@ services:
     image: docker.io/nginx:alpine
     ports:
       # If you want to change the used port, modify the first one
+      # If you want to connect from other devices on the same network, remove the two 127.0.0.1:
       - 127.0.0.1:8080:80 # Nginx+Php server
       - 127.0.0.1:8081:8080 # Phpmyadmin
     volumes:

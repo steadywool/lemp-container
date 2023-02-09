@@ -63,7 +63,7 @@ PhpMyAdmin is available at `localhost:8081`.
 
 In your `*.php` files, when you configure the database host, use `mariadb` instead of `localhost`:
 ```php
-$conn = mysqli_connect('mariadb', 'USER', 'PASSWORD', 'DATABASE');
+$conn = mysqli_connect('mariadb', 'USER', 'PASSWORD', 'DATABASE' , "PORT");
 ```
 
 - **How can I use port `80` for the Nginx server instead of `8080` ?**

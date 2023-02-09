@@ -12,9 +12,7 @@ services:
       - ./config/nginx/conf.d:/etc/nginx/conf.d
       - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
       - phpmyadmindata:/var/www/phpmyadmin
-    depends_on:
-      - php
-      - phpmyadmin
+    restart: always
 
   php:
     build:
@@ -25,7 +23,9 @@ services:
       - ./src:/var/www/html
       - ./config/php/php.ini:/usr/local/etc/php/php.ini
     depends_on:
+      - nginx
       - mariadb
+    restart: always
 
   mariadb:
     image: docker.io/mariadb
@@ -33,6 +33,7 @@ services:
       - mariadbdata:/var/lib/mysql
     environment:
       MARIADB_ROOT_PASSWORD: root
+    restart: always
 
   phpmyadmin:
     image: docker.io/phpmyadmin:fpm-alpine
@@ -44,6 +45,7 @@ services:
       PMA_PASSWORD: root
     depends_on:
       - mariadb
+    restart: always
 
 volumes:
   mariadbdata:

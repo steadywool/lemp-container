@@ -90,8 +90,8 @@ You need to remove the two "127.0.0.1" from the `docker-compose.yml` file like t
     image: docker.io/nginx:alpine
     ports:
       # If you want to connect from other devices on the same network, remove the two "127.0.0.1:"
-      - 8080:80 # Nginx+Php server
-      - 8081:8080 # Phpmyadmin
+      - 80:80 # Nginx+Php server
+      - 8080:8080 # Phpmyadmin
 ```
 
 - **I can't use this thing with a Raspberry Pi !**
@@ -101,5 +101,5 @@ You can change the image user for Mysql to one compatible with the architecture 
 ```yml
 mariadb:
     # Use this image instead of the official one
-    image: docker.io/monstrenyatko/rpi-mariadb
+    image: monstrenyatko/rpi-mariadb # RPI image
 ```

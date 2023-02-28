@@ -8,12 +8,12 @@ services:
       # If you want to connect from other devices on the same network, remove the two 127.0.0.1:
       - 127.0.0.1:8080:80 # Nginx+Php server
       - 127.0.0.1:8081:8080 # Phpmyadmin
-      # 80:80
-      # 8080:8080
+      #80:80
+      #8080:8080
     volumes:
-      - ./src:/var/www/html
-      - ./config/nginx/conf.d:/etc/nginx/conf.d
-      - phpmyadmindata:/var/www/phpmyadmin
+      - ./src:/var/www/html:rw
+      - ./config/nginx/conf.d:/etc/nginx/conf.d:rw
+      - phpmyadmindata:/var/www/phpmyadmin:rw
     restart: always
 
   php:
@@ -22,17 +22,19 @@ services:
       dockerfile: php-dockerfile # PHP FPM
     working_dir: /var/www/html
     volumes:
-      - ./src:/var/www/html
-      - ./config/php/php.ini:/usr/local/etc/php/php.ini
+      - ./src:/var/www/html:rw
+      - ./config/php/php.ini:/usr/local/etc/php/php.ini:rw
     depends_on:
       - nginx
       - mariadb
     restart: always
 
   mariadb:
+    # Use this image instead of the official one
+    #image: monstrenyatko/rpi-mariadb
     image: docker.io/mariadb
     volumes:
-      - mariadbdata:/var/lib/mysql
+      - mariadbdata:/var/lib/mysql:rw
     environment:
       MARIADB_ROOT_PASSWORD: root
       # MARIADB_USER: user
@@ -42,13 +44,13 @@ services:
   phpmyadmin:
     image: docker.io/phpmyadmin:fpm-alpine
     volumes:
-      - phpmyadmindata:/var/www/html
+      - phpmyadmindata:/var/www/html:rw
     environment:
       PMA_HOST: mariadb
       PMA_USER: root
       PMA_PASSWORD: root
-      # PMA_USER: user
-      # PMA_PASSWORD: password
+      #PMA_USER: user
+      #PMA_PASSWORD: password
     depends_on:
       - mariadb
     restart: always

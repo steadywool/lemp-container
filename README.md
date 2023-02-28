@@ -74,16 +74,8 @@ Stop the containers & modify the docker-compose.yml file like this:
     image: docker.io/nginx:alpine
     ports:
       # If you want to change the used port, modify the first one
-      # If you want to connect from other devices on the same network, remove the two "127.0.0.1:"
       - 127.0.0.1:80:80 # Nginx+Php server
       - 127.0.0.1:8080:8080 # Phpmyadmin
-    volumes:
-      - ./src:/var/www/html
-      - ./config/nginx/conf.d:/etc/nginx/conf.d
-      - phpmyadmindata:/var/www/phpmyadmin
-    depends_on:
-      - php
-      - phpmyadmin
 ```
 
 Here Nginx uses port `80` instead of `8080` and PhpMyAdmin uses port `8080` instead of `8081`.
@@ -97,15 +89,17 @@ You need to remove the two "127.0.0.1" from the `docker-compose.yml` file like t
  nginx:
     image: docker.io/nginx:alpine
     ports:
-      # If you want to change the used port, modify the first one
       # If you want to connect from other devices on the same network, remove the two "127.0.0.1:"
       - 8080:80 # Nginx+Php server
       - 8081:8080 # Phpmyadmin
-    volumes:
-      - ./src:/var/www/html
-      - ./config/nginx/conf.d:/etc/nginx/conf.d
-      - phpmyadmindata:/var/www/phpmyadmin
-    depends_on:
-      - php
-      - phpmyadmin
+```
+
+- **I can't use this thing with a Raspberry Pi !**
+
+You can change the image user for Mysql to one compatible with the architecture of a Raspberry Pi.
+
+```yml
+mariadb:
+    # Use this image instead of the official one
+    image: docker.io/monstrenyatko/rpi-mariadb
 ```

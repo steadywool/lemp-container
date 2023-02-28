@@ -66,7 +66,7 @@ In your `*.php` files, when you configure the database host, use `mariadb` inste
 $conn = mysqli_connect('mariadb', 'USER', 'PASSWORD', 'DATABASE' , "PORT");
 ```
 
-- **How can I use port `80` for the Nginx server instead of `8080` ?**
+- **How can I use another port for the Nginx server instead of `8080` ?**
 
 Stop the containers & modify the docker-compose.yml file like this:
 ```yml
@@ -80,7 +80,6 @@ Stop the containers & modify the docker-compose.yml file like this:
     volumes:
       - ./src:/var/www/html
       - ./config/nginx/conf.d:/etc/nginx/conf.d
-      - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
       - phpmyadmindata:/var/www/phpmyadmin
     depends_on:
       - php
@@ -105,7 +104,6 @@ You need to remove the two "127.0.0.1" from the `docker-compose.yml` file like t
     volumes:
       - ./src:/var/www/html
       - ./config/nginx/conf.d:/etc/nginx/conf.d
-      - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
       - phpmyadmindata:/var/www/phpmyadmin
     depends_on:
       - php

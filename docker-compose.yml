@@ -8,10 +8,11 @@ services:
       # If you want to connect from other devices on the same network, remove the two 127.0.0.1:
       - 127.0.0.1:8080:80 # Nginx+Php server
       - 127.0.0.1:8081:8080 # Phpmyadmin
+      # 80:80
+      # 8080:8080
     volumes:
       - ./src:/var/www/html
       - ./config/nginx/conf.d:/etc/nginx/conf.d
-      - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
       - phpmyadmindata:/var/www/phpmyadmin
     restart: always
 
@@ -34,6 +35,8 @@ services:
       - mariadbdata:/var/lib/mysql
     environment:
       MARIADB_ROOT_PASSWORD: root
+      # MARIADB_USER: user
+      # MARIADB_PASSWORD: password
     restart: always
 
   phpmyadmin:
@@ -44,6 +47,8 @@ services:
       PMA_HOST: mariadb
       PMA_USER: root
       PMA_PASSWORD: root
+      # PMA_USER: user
+      # PMA_PASSWORD: password
     depends_on:
       - mariadb
     restart: always

@@ -12,7 +12,7 @@ services:
       #8080:8080 # Phpmyadmin
     volumes:
       - ./src:/var/www/html:rw
-      - ./config/nginx/conf.d:/etc/nginx/conf.d:rw
+      - ./config/nginx:/etc/nginx/conf.d:rw
       - phpmyadmindata:/var/www/phpmyadmin:rw
     restart: always
 

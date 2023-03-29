@@ -53,9 +53,9 @@ docker compose ps
 
 ⚠️ **BE CAREFUL: by default Docker need root access. Use Podman or Docker in rootless mode if you care about security.**
 
-After the container has been started, you can access your LEMP server from `localhost:8080` with your favorite web browser.
+After the container has been started, you can access your LEMP server from `localhost` with your favorite web browser.
 
-PhpMyAdmin is available at `localhost:8081`.
+PhpMyAdmin is available at `localhost:8080`.
 
 ## FAQ
 
@@ -66,7 +66,7 @@ In your `*.php` files, when you configure the database host, use `mariadb` inste
 $conn = mysqli_connect('mariadb', 'USER', 'PASSWORD', 'DATABASE' , "PORT");
 ```
 
-- **How can I use another port for the Nginx server instead of `8080` ?**
+- **How can I use another port for the Nginx server instead of `80` ?**
 
 Stop the containers & modify the docker-compose.yml file like this:
 ```yml
@@ -74,11 +74,11 @@ Stop the containers & modify the docker-compose.yml file like this:
     image: docker.io/nginx:alpine
     ports:
       # If you want to change the used port, modify the first one
-      - 127.0.0.1:80:80 # Nginx+Php server
-      - 127.0.0.1:8080:8080 # Phpmyadmin
+      - 127.0.0.1:1080:80 # Nginx+Php server
+      - 127.0.0.1:1081:8080 # Phpmyadmin
 ```
 
-Here Nginx uses port `80` instead of `8080` and PhpMyAdmin uses port `8080` instead of `8081`.
+Here Nginx uses port `1080` instead of `80` and PhpMyAdmin uses port `1081` instead of `8080`.
 
 ⚠️ **BEWARE: By default, Docker & Podman rootless can't expose privileged TCP/UDP ports (<1024).**
 

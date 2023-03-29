@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3"
 
 services:
   nginx:
@@ -6,10 +6,10 @@ services:
     ports:
       # If you want to change the used port, modify the first one
       # If you want to connect from other devices on the same network, remove the two 127.0.0.1:
-      - 127.0.0.1:8080:80 # Nginx+Php server
-      - 127.0.0.1:8081:8080 # Phpmyadmin
-      #80:80 # Nginx+Php server
-      #8080:8080 # Phpmyadmin
+      - 127.0.0.1:80:80 # Nginx+Php server
+      - 127.0.0.1:8080:8080 # Phpmyadmin
+      #1080:80 # Nginx+Php server
+      #1081:8080 # Phpmyadmin
     volumes:
       - ./src:/var/www/html:rw
       - ./config/nginx:/etc/nginx/conf.d:rw

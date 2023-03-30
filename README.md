@@ -1,6 +1,6 @@
-# LEMP Container
+# LEMP Container 🐋
 
-LEMP Container that can be used with Docker & Podman 🐋
+LEMP Container that can be used with Docker & Podman.
 
 ## Features
 

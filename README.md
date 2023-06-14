@@ -10,6 +10,8 @@ LEMP Container that can be used with Docker & Podman.
 
 - [PHP FPM (server-side scripting language)](https://hub.docker.com/_/php)
 
+- [NodeJS (JavaScript runtime environment)](https://hub.docker.com/_/node)
+
 - [PhpMyAdmin (MySQL/MariaDB interface)](https://hub.docker.com/_/phpmyadmin)
 
 ## Installation

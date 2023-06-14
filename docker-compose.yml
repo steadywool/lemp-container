@@ -8,11 +8,10 @@ services:
       # If you want to connect from other devices on the same network, remove the two 127.0.0.1:
       - 127.0.0.1:80:80 # Nginx+Php server
       - 127.0.0.1:8080:8080 # Phpmyadmin
-      #1080:80 # Nginx+Php server
-      #1081:8080 # Phpmyadmin
     volumes:
-      - ./src:/var/www/html:rw
+      - ./app:/var/www/html:rw
       - ./config/nginx:/etc/nginx/conf.d:rw
+      - ./log/nginx:/var/log/nginx
       - phpmyadmindata:/var/www/phpmyadmin:rw
     restart: always
 
@@ -22,7 +21,7 @@ services:
       dockerfile: php-dockerfile # PHP FPM
     working_dir: /var/www/html
     volumes:
-      - ./src:/var/www/html:rw
+      - ./app:/var/www/html:rw
       - ./config/php/php.ini:/usr/local/etc/php/php.ini:rw
     depends_on:
       - nginx
@@ -35,6 +34,7 @@ services:
     image: docker.io/mariadb # Official image
     volumes:
       - mariadbdata:/var/lib/mysql:rw
+      - ./log/mariadb:/var/log/mariadb
     environment:
       MARIADB_ROOT_PASSWORD: root
       # MARIADB_USER: user
@@ -53,6 +53,14 @@ services:
       #PMA_PASSWORD: password
     depends_on:
       - mariadb
+    restart: always
+
+  node:
+    image: docker.io/node:alpine
+    working_dir: /var/node/app
+    volumes:
+      - ./app:/var/node/app
+    #command: sh -c "npm install && tail -f /dev/null"
     restart: always
 
 volumes:

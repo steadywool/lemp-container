@@ -1,8 +1,8 @@
-# LEMP Container 🐋
+# 🐋 LEMP Container
 
 LEMP Container that can be used with Docker & Podman.
 
-## Features
+## 🔬 Features
 
 - [Nginx Alpine (reverse proxy server)](https://hub.docker.com/_/nginx)
 
@@ -14,7 +14,7 @@ LEMP Container that can be used with Docker & Podman.
 
 - [PhpMyAdmin (MySQL/MariaDB interface)](https://hub.docker.com/_/phpmyadmin)
 
-## Installation
+## 🚀 Installation
 
 To install this LEMP Stack, you need to install `docker` & `docker-compose` as root:
 ```bash
@@ -36,7 +36,7 @@ systemctl enable docker.service
 systemctl start docker.service
 ```
 
-## Usage
+## 💎 Usage
 
 To start the container, go inside the `lemp-container` directory and run:
 ```
@@ -53,13 +53,13 @@ You can see if the LEMP stack is running with the option `ps`:
 docker compose ps
 ```
 
-⚠️ **BE CAREFUL: by default Docker need root access. Use Podman or Docker in rootless mode if you care about security.**
+> ⚠️ **BE CAREFUL: by default Docker need root access. Use Podman or Docker in rootless mode if you care about security.**
 
 After the container has been started, you can access your LEMP server from `localhost` with your favorite web browser.
 
 PhpMyAdmin is available at `localhost:8080`.
 
-## FAQ
+## 📘 FAQ
 
 - **Why can't I communicate with my database ?**
 
@@ -82,7 +82,7 @@ Stop the containers & modify the docker-compose.yml file like this:
 
 Here Nginx uses port `1080` instead of `80` and PhpMyAdmin uses port `1081` instead of `8080`.
 
-⚠️ **BEWARE: By default, Docker & Podman rootless can't expose privileged TCP/UDP ports (<1024).**
+> ⚠️ **BEWARE: By default, Docker & Podman rootless can't expose privileged TCP/UDP ports (<1024).**
 
 - **I can't access this server from other devices on the same network !**
 
